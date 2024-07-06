@@ -64,8 +64,8 @@
 
             // 入力フォームの値をチェック
             if (minutes < 0 || seconds < 0) {
-                document.getElementById('errors').innerText = "マイナスは入力できません";
-                document.getElementById('errors').classList.remove('hidden');
+                document.getElementById('error').innerText = "マイナスは入力できません";
+                document.getElementById('error').classList.remove('hidden');
                 return;
             }
 
@@ -78,6 +78,7 @@
             let minutes = document.getElementById('minutes').value || 0;
             let seconds = document.getElementById('seconds').value || 0;
             let timeLeft = (minutes * 60) + parseInt(seconds);
+            isPaused = false;
             setMode("progress");
             countdownInterval = setInterval(() => {
                 if(!isPaused) {
@@ -121,7 +122,7 @@
 
         // アラートを開始する関数
         function startAlert() {
-            let alertInterval = setInterval(() => {
+            alertInterval = setInterval(() => {
                 document.body.style.backgroundColor = document.body.style.backgroundColor === 'red' ? 'white' : 'red';
             }, 1000);
             document.getElementById('alertStop').classList.remove('hidden')
